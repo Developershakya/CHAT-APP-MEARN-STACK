@@ -1,13 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
-const MONGO_URL =''
-main().then(console.log('connect db')).catch();
+const dotenv = require('dotenv');
+const connectDB = require('./config/database');
 
-async function main() {
-    
-    await mongoose.connect(MONGO_URL);
-}
+dotenv.config({});
+const app = express();
+const PORT = process.env.MONGO_URL 
+
 app.listen(3000,()=>{
+    connectDB();
     console.log('server started');
 })
